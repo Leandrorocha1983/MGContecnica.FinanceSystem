@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using MGContecnica.Domain.Models;
 using MGContecnica.Domain.Entities;
 using MGContecnica.Domain.Enums;
 using MGContecnica.Domain.Interfaces.Repositories;
@@ -56,6 +57,38 @@ public class TransacaoRepository : BaseRepository<Transacao>, ITransacaoReposito
             query = query.Where(t => t.Categoria.Tipo == tipo.Value);
 
         return await query.OrderByDescending(t => t.Data).ToListAsync();
+    }
+
+    public async Task<PagedResult<Transacao>> GetPagedAsync(int pageNumber, int pageSize, DateTime? dataInicio, DateTime? dataFim, int? categoriaId, TipoTransacao? tipo)
+    {
+        var query = _dbSet.Include(t => t.Categoria).AsQueryable();
+
+        if (dataInicio.HasValue)
+            query = query.Where(t => t.Data >= dataInicio.Value);
+        
+        if (dataFim.HasValue)
+            query = query.Where(t => t.Data <= dataFim.Value);
+
+        if (categoriaId.HasValue)
+            query = query.Where(t => t.CategoriaId == categoriaId.Value);
+
+        if (tipo.HasValue)
+            query = query.Where(t => t.Categoria.Tipo == tipo.Value);
+
+        var totalCount = await query.CountAsync();
+        var items = await query
+            .OrderByDescending(t => t.Data)
+            .Skip((pageNumber - 1) * pageSize)
+            .Take(pageSize)
+            .ToListAsync();
+
+        return new PagedResult<Transacao>
+        {
+            Items = items,
+            TotalCount = totalCount,
+            PageNumber = pageNumber,
+            PageSize = pageSize
+        };
     }
 
     public async Task<decimal> GetSaldoPorPeriodoAsync(DateTime dataInicio, DateTime dataFim)

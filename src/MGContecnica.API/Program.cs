@@ -1,47 +1,75 @@
 using MGContecnica.API.Configuration;
 using MGContecnica.Infrastructure.Data.Context;
 using Microsoft.EntityFrameworkCore;
+using Serilog;
 
-var builder = WebApplication.CreateBuilder(args);
+// Configurar Serilog
+Log.Logger = new LoggerConfiguration()
+    .WriteTo.Console()
+    .WriteTo.File("logs/mgcontecnica-.txt", 
+        rollingInterval: RollingInterval.Day,
+        retainedFileCountLimit: 30)
+    .MinimumLevel.Information()
+    .CreateLogger();
 
-// Add services to the container.
-builder.Services.AddControllers();
-builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen();
-
-// Add custom dependencies
-builder.Services.AddDependencies(builder.Configuration);
-
-// Add CORS
-builder.Services.AddCors(options =>
+try
 {
-    options.AddPolicy("AllowAll", policy =>
+    Log.Information("Iniciando aplicação MG Contecnica");
+
+    var builder = WebApplication.CreateBuilder(args);
+
+    // Usar Serilog
+    builder.Host.UseSerilog();
+
+    // Add services to the container.
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen();
+
+    // Add custom dependencies
+    builder.Services.AddDependencies(builder.Configuration);
+
+    // Add CORS
+    builder.Services.AddCors(options =>
     {
-        policy.AllowAnyOrigin()
-              .AllowAnyMethod()
-              .AllowAnyHeader();
+        options.AddPolicy("AllowAll", policy =>
+        {
+            policy.AllowAnyOrigin()
+                  .AllowAnyMethod()
+                  .AllowAnyHeader();
+        });
     });
-});
 
-var app = builder.Build();
+    var app = builder.Build();
 
-// Criar banco automaticamente
-using (var scope = app.Services.CreateScope())
-{
-    var context = scope.ServiceProvider.GetRequiredService<MGContecnicaDbContext>();
-    context.Database.EnsureCreated();
+    // Criar banco automaticamente
+    using (var scope = app.Services.CreateScope())
+    {
+        var context = scope.ServiceProvider.GetRequiredService<MGContecnicaDbContext>();
+        context.Database.EnsureCreated();
+        Log.Information("Banco de dados inicializado");
+    }
+
+    // Configure the HTTP request pipeline.
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseCors("AllowAll");
+    app.UseAuthorization();
+    app.MapControllers();
+
+    Log.Information("API MG Contecnica iniciada com sucesso");
+    app.Run();
 }
-
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
+catch (Exception ex)
 {
-    app.UseSwagger();
-    app.UseSwaggerUI();
+    Log.Fatal(ex, "Aplicação falhou ao iniciar");
 }
-
-app.UseHttpsRedirection();
-app.UseCors("AllowAll");
-app.UseAuthorization();
-app.MapControllers();
-
-app.Run();
+finally
+{
+    Log.CloseAndFlush();
+}

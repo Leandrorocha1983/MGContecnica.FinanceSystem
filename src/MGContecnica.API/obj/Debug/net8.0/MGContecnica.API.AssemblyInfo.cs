@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("MGContecnica.API")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2a20075863b1b221138093639caa5bb69f95281")]
 [assembly: System.Reflection.AssemblyProductAttribute("MGContecnica.API")]
 [assembly: System.Reflection.AssemblyTitleAttribute("MGContecnica.API")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

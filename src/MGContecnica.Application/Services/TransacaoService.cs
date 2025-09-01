@@ -1,3 +1,4 @@
+using MGContecnica.Domain.Models;
 using MGContecnica.Domain.Entities;
 using MGContecnica.Domain.Enums;
 using MGContecnica.Domain.Interfaces.Repositories;
@@ -63,6 +64,11 @@ public class TransacaoService : ITransacaoService
     public async Task<IEnumerable<Transacao>> GetWithFiltrosAsync(DateTime? dataInicio, DateTime? dataFim, int? categoriaId, TipoTransacao? tipo)
     {
         return await _transacaoRepository.GetWithFiltrosAsync(dataInicio, dataFim, categoriaId, tipo);
+    }
+
+    public async Task<PagedResult<Transacao>> GetPagedAsync(int pageNumber, int pageSize, DateTime? dataInicio, DateTime? dataFim, int? categoriaId, TipoTransacao? tipo)
+    {
+        return await _transacaoRepository.GetPagedAsync(pageNumber, pageSize, dataInicio, dataFim, categoriaId, tipo);
     }
 
     private async Task ValidateTransacaoAsync(Transacao transacao)

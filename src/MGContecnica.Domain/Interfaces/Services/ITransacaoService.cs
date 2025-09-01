@@ -1,3 +1,4 @@
+using MGContecnica.Domain.Models;
 using MGContecnica.Domain.Entities;
 using MGContecnica.Domain.Enums;
 
@@ -11,4 +12,5 @@ public interface ITransacaoService
     Task<Transacao> UpdateAsync(Transacao transacao);
     Task DeleteAsync(int id);
     Task<IEnumerable<Transacao>> GetWithFiltrosAsync(DateTime? dataInicio, DateTime? dataFim, int? categoriaId, TipoTransacao? tipo);
+    Task<PagedResult<Transacao>> GetPagedAsync(int pageNumber, int pageSize, DateTime? dataInicio, DateTime? dataFim, int? categoriaId, TipoTransacao? tipo);
 }

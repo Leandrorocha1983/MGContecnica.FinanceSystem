@@ -1,3 +1,4 @@
+using MGContecnica.Domain.Models;
 using MGContecnica.Domain.Entities;
 using MGContecnica.Domain.Enums;
 
@@ -12,4 +13,5 @@ public interface ITransacaoRepository : IBaseRepository<Transacao>
     Task<decimal> GetSaldoPorPeriodoAsync(DateTime dataInicio, DateTime dataFim);
     Task<decimal> GetReceitasPorPeriodoAsync(DateTime dataInicio, DateTime dataFim);
     Task<decimal> GetDespesasPorPeriodoAsync(DateTime dataInicio, DateTime dataFim);
+    Task<PagedResult<Transacao>> GetPagedAsync(int pageNumber, int pageSize, DateTime? dataInicio, DateTime? dataFim, int? categoriaId, TipoTransacao? tipo);
 }

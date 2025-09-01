@@ -1,8 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Logging;
 using MGContecnica.Application.DTOs;
 using MGContecnica.Domain.Entities;
 using MGContecnica.Domain.Enums;
 using MGContecnica.Domain.Interfaces.Services;
+using MGContecnica.Domain.Models;
 
 namespace MGContecnica.API.Controllers;
 
@@ -11,10 +13,12 @@ namespace MGContecnica.API.Controllers;
 public class TransacoesController : ControllerBase
 {
     private readonly ITransacaoService _transacaoService;
+    private readonly ILogger<TransacoesController> _logger;
 
-    public TransacoesController(ITransacaoService transacaoService)
+    public TransacoesController(ITransacaoService transacaoService, ILogger<TransacoesController> logger)
     {
         _transacaoService = transacaoService;
+        _logger = logger;
     }
 
     [HttpGet]
@@ -26,25 +30,18 @@ public class TransacoesController : ControllerBase
     {
         try
         {
+            _logger.LogInformation("Buscando transações com filtros - DataInicio: {DataInicio}, DataFim: {DataFim}, CategoriaId: {CategoriaId}, Tipo: {Tipo}", 
+                dataInicio, dataFim, categoriaId, tipo);
+
             var transacoes = await _transacaoService.GetWithFiltrosAsync(dataInicio, dataFim, categoriaId, tipo);
-            
-            var transacoesDto = transacoes.Select(t => new TransacaoDto
-            {
-                Id = t.Id,
-                Descricao = t.Descricao,
-                Valor = t.Valor,
-                Data = t.Data,
-                CategoriaId = t.CategoriaId,
-                Observacoes = t.Observacoes,
-                NomeCategoria = t.Categoria?.Nome ?? "",
-                TipoCategoria = t.Categoria?.Tipo ?? TipoTransacao.Despesa
-            });
+            var transacoesDto = transacoes.Select(MapToDto);
 
             return Ok(transacoesDto);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            _logger.LogError(ex, "Erro ao buscar transações com filtros");
+            return StatusCode(500, "Erro interno do servidor");
         }
     }
 
@@ -53,27 +50,26 @@ public class TransacoesController : ControllerBase
     {
         try
         {
+            if (id <= 0)
+            {
+                return BadRequest("ID deve ser maior que zero");
+            }
+
+            _logger.LogInformation("Buscando transação por ID: {Id}", id);
+
             var transacao = await _transacaoService.GetByIdAsync(id);
             if (transacao == null)
-                return NotFound("Transação não encontrada");
-
-            var transacaoDto = new TransacaoDto
             {
-                Id = transacao.Id,
-                Descricao = transacao.Descricao,
-                Valor = transacao.Valor,
-                Data = transacao.Data,
-                CategoriaId = transacao.CategoriaId,
-                Observacoes = transacao.Observacoes,
-                NomeCategoria = transacao.Categoria?.Nome ?? "",
-                TipoCategoria = transacao.Categoria?.Tipo ?? TipoTransacao.Despesa
-            };
+                _logger.LogWarning("Transação não encontrada - ID: {Id}", id);
+                return NotFound("Transação não encontrada");
+            }
 
-            return Ok(transacaoDto);
+            return Ok(MapToDto(transacao));
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            _logger.LogError(ex, "Erro ao buscar transação por ID: {Id}", id);
+            return StatusCode(500, "Erro interno do servidor");
         }
     }
 
@@ -82,6 +78,14 @@ public class TransacoesController : ControllerBase
     {
         try
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _logger.LogInformation("Criando nova transação - Descrição: {Descricao}, Valor: {Valor}", 
+                createDto.Descricao, createDto.Valor);
+
             var transacao = new Transacao
             {
                 Descricao = createDto.Descricao,
@@ -92,22 +96,16 @@ public class TransacoesController : ControllerBase
             };
 
             var transacaoCriada = await _transacaoService.CreateAsync(transacao);
+            var transacaoDto = MapToDto(transacaoCriada);
 
-            var transacaoDto = new TransacaoDto
-            {
-                Id = transacaoCriada.Id,
-                Descricao = transacaoCriada.Descricao,
-                Valor = transacaoCriada.Valor,
-                Data = transacaoCriada.Data,
-                CategoriaId = transacaoCriada.CategoriaId,
-                Observacoes = transacaoCriada.Observacoes
-            };
+            _logger.LogInformation("Transação criada com sucesso - ID: {Id}", transacaoCriada.Id);
 
             return CreatedAtAction(nameof(Get), new { id = transacaoDto.Id }, transacaoDto);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            _logger.LogError(ex, "Erro ao criar transação");
+            return StatusCode(500, "Erro interno do servidor");
         }
     }
 
@@ -116,6 +114,26 @@ public class TransacoesController : ControllerBase
     {
         try
         {
+            if (id <= 0)
+            {
+                return BadRequest("ID deve ser maior que zero");
+            }
+
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            _logger.LogInformation("Atualizando transação - ID: {Id}", id);
+
+            // Verificar se a transação existe
+            var transacaoExistente = await _transacaoService.GetByIdAsync(id);
+            if (transacaoExistente == null)
+            {
+                _logger.LogWarning("Tentativa de atualizar transação inexistente - ID: {Id}", id);
+                return NotFound("Transação não encontrada");
+            }
+
             var transacao = new Transacao
             {
                 Id = id,
@@ -127,22 +145,16 @@ public class TransacoesController : ControllerBase
             };
 
             var transacaoAtualizada = await _transacaoService.UpdateAsync(transacao);
+            var transacaoDto = MapToDto(transacaoAtualizada);
 
-            var transacaoDto = new TransacaoDto
-            {
-                Id = transacaoAtualizada.Id,
-                Descricao = transacaoAtualizada.Descricao,
-                Valor = transacaoAtualizada.Valor,
-                Data = transacaoAtualizada.Data,
-                CategoriaId = transacaoAtualizada.CategoriaId,
-                Observacoes = transacaoAtualizada.Observacoes
-            };
+            _logger.LogInformation("Transação atualizada com sucesso - ID: {Id}", id);
 
             return Ok(transacaoDto);
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            _logger.LogError(ex, "Erro ao atualizar transação - ID: {Id}", id);
+            return StatusCode(500, "Erro interno do servidor");
         }
     }
 
@@ -151,12 +163,94 @@ public class TransacoesController : ControllerBase
     {
         try
         {
+            if (id <= 0)
+            {
+                return BadRequest("ID deve ser maior que zero");
+            }
+
+            _logger.LogInformation("Excluindo transação - ID: {Id}", id);
+
+            // Verificar se a transação existe
+            var transacaoExistente = await _transacaoService.GetByIdAsync(id);
+            if (transacaoExistente == null)
+            {
+                _logger.LogWarning("Tentativa de excluir transação inexistente - ID: {Id}", id);
+                return NotFound("Transação não encontrada");
+            }
+
             await _transacaoService.DeleteAsync(id);
+            
+            _logger.LogInformation("Transação excluída com sucesso - ID: {Id}", id);
+
             return NoContent();
         }
         catch (Exception ex)
         {
-            return BadRequest(ex.Message);
+            _logger.LogError(ex, "Erro ao excluir transação - ID: {Id}", id);
+            return StatusCode(500, "Erro interno do servidor");
         }
+    }
+
+    [HttpGet("paged")]
+    public async Task<ActionResult<PagedResult<TransacaoDto>>> GetPaged(
+        [FromQuery] int pageNumber = 1,
+        [FromQuery] int pageSize = 10,
+        [FromQuery] DateTime? dataInicio = null,
+        [FromQuery] DateTime? dataFim = null,
+        [FromQuery] int? categoriaId = null,
+        [FromQuery] TipoTransacao? tipo = null)
+    {
+        try
+        {
+            // Validação dos parâmetros de paginação
+            if (pageNumber < 1)
+            {
+                return BadRequest("Número da página deve ser maior que zero");
+            }
+
+            if (pageSize < 1 || pageSize > 100)
+            {
+                return BadRequest("Tamanho da página deve estar entre 1 e 100");
+            }
+
+            _logger.LogInformation("Buscando transações paginadas - Página: {PageNumber}, Tamanho: {PageSize}, DataInicio: {DataInicio}, DataFim: {DataFim}, CategoriaId: {CategoriaId}, Tipo: {Tipo}", 
+                pageNumber, pageSize, dataInicio, dataFim, categoriaId, tipo);
+
+            var result = await _transacaoService.GetPagedAsync(pageNumber, pageSize, dataInicio, dataFim, categoriaId, tipo);
+            
+            var pagedDto = new PagedResult<TransacaoDto>
+            {
+                Items = result.Items.Select(MapToDto),
+                TotalCount = result.TotalCount,
+                PageNumber = result.PageNumber,
+                PageSize = result.PageSize
+            };
+
+            _logger.LogInformation("Retornadas {Count} transações de {Total} - Página {Page} de {TotalPages}", 
+                pagedDto.Items.Count(), pagedDto.TotalCount, pagedDto.PageNumber, pagedDto.TotalPages);
+
+            return Ok(pagedDto);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Erro ao buscar transações paginadas - Página: {PageNumber}, Tamanho: {PageSize}", pageNumber, pageSize);
+            return StatusCode(500, "Erro interno do servidor");
+        }
+    }
+
+    // Método privado para centralizar o mapeamento
+    private static TransacaoDto MapToDto(Transacao transacao)
+    {
+        return new TransacaoDto
+        {
+            Id = transacao.Id,
+            Descricao = transacao.Descricao,
+            Valor = transacao.Valor,
+            Data = transacao.Data,
+            CategoriaId = transacao.CategoriaId,
+            Observacoes = transacao.Observacoes,
+            NomeCategoria = transacao.Categoria?.Nome ?? "",
+            TipoCategoria = transacao.Categoria?.Tipo ?? TipoTransacao.Despesa
+        };
     }
 }
