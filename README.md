@@ -98,12 +98,12 @@ Descrição: Campo obrigatório
 🗄️ Banco de Dados
 O projeto usa SQLite que é criado automaticamente na primeira execução.
 Local do arquivo: MGContecnica.db na pasta raiz do projeto API.
-👨‍💻 Desenvolvedor
-Leandro Rocha
 📄 Licença
 Este projeto está sob a licença MIT.
 EOF
 
 ## Clone o repositório
-git clone https://github.com/seu-usuario/mgcontecnica-financesystem.git
-cd mgcontecnica-financesystem
+https://github.com/Leandrorocha1983/MGContecnica.FinanceSystem.git
+
+👨‍💻 Desenvolvedor
+Leandro Rocha
