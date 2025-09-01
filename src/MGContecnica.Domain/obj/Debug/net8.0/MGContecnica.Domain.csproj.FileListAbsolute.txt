@@ -1,0 +1,11 @@
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/bin/Debug/net8.0/MGContecnica.Domain.deps.json
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/bin/Debug/net8.0/MGContecnica.Domain.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/bin/Debug/net8.0/MGContecnica.Domain.pdb
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/obj/Debug/net8.0/MGContecnica.Domain.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/obj/Debug/net8.0/MGContecnica.Domain.AssemblyInfoInputs.cache
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/obj/Debug/net8.0/MGContecnica.Domain.AssemblyInfo.cs
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/obj/Debug/net8.0/MGContecnica.Domain.csproj.CoreCompileInputs.cache
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/obj/Debug/net8.0/MGContecnica.Domain.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/obj/Debug/net8.0/refint/MGContecnica.Domain.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/obj/Debug/net8.0/MGContecnica.Domain.pdb
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Domain/obj/Debug/net8.0/ref/MGContecnica.Domain.dll

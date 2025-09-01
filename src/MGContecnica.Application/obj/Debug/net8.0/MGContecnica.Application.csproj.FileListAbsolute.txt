@@ -1,0 +1,17 @@
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/bin/Debug/net8.0/MGContecnica.Application.deps.json
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/bin/Debug/net8.0/MGContecnica.Application.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/bin/Debug/net8.0/MGContecnica.Application.pdb
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/MGContecnica.Application.GeneratedMSBuildEditorConfig.editorconfig
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/MGContecnica.Application.AssemblyInfoInputs.cache
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/MGContecnica.Application.AssemblyInfo.cs
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/MGContecnica.Application.csproj.CoreCompileInputs.cache
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/MGContecnica.Application.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/refint/MGContecnica.Application.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/MGContecnica.Application.pdb
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/ref/MGContecnica.Application.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/bin/Debug/net8.0/MGContecnica.Domain.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/bin/Debug/net8.0/MGContecnica.Infrastructure.dll
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/bin/Debug/net8.0/MGContecnica.Domain.pdb
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/bin/Debug/net8.0/MGContecnica.Infrastructure.pdb
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/MGContecnica.Application.csproj.AssemblyReference.cache
+/Users/leandrorocha/MGContecnica.FinanceSystem/src/MGContecnica.Application/obj/Debug/net8.0/MGContec.D2D0815D.Up2Date
