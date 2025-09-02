@@ -66,11 +66,11 @@ Sistema de controle financeiro desenvolvido em .NET 8 com arquitetura limpa e fr
 
 src/ 
 
-├── MGContecnica.API/          # Controllers e configurações
-├── MGContecnica.Application/  # Services, DTOs e validações
-├── MGContecnica.Domain/       # Entidades, interfaces e modelos
-├── MGContecnica.Infrastructure/# Repositories e DbContext
-└── MGContecnica.WebApp/       # Frontend Angular
+MGContecnica.API/           - Controllers e configurações
+MGContecnica.Application/   - Services, DTOs e validações
+MGContecnica.Domain/        - Entidades, interfaces e modelos
+MGContecnica.Infrastructure - Repositories e DbContext
+MGContecnica.WebApp/        - Frontend Angular
 ## ⚡ Como Executar
 
 ### Pré-requisitos
