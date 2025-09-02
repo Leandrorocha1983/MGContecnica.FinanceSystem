@@ -1,0 +1,173 @@
+2025-09-02 12:18:29.279 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/transacoes - null 0
+2025-09-02 12:18:29.280 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/categorias - null 0
+2025-09-02 12:18:29.280 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/categorias - null 0
+2025-09-02 12:18:29.280 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/transacoes - null 0
+2025-09-02 12:18:29.764 -03:00 [WRN] Failed to determine the https port for redirect.
+2025-09-02 12:18:29.793 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:18:29.793 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:18:29.793 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:18:29.793 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:18:29.969 -03:00 [INF] Route matched with {action = "Get", controller = "Categorias"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.CategoriaDto]]] Get() on controller MGContecnica.API.Controllers.CategoriasController (MGContecnica.API).
+2025-09-02 12:18:29.969 -03:00 [INF] Route matched with {action = "Get", controller = "Categorias"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.CategoriaDto]]] Get() on controller MGContecnica.API.Controllers.CategoriasController (MGContecnica.API).
+2025-09-02 12:18:30.003 -03:00 [INF] Route matched with {action = "Get", controller = "Transacoes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.TransacaoDto]]] Get(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime], System.Nullable`1[System.Int32], System.Nullable`1[MGContecnica.Domain.Enums.TipoTransacao]) on controller MGContecnica.API.Controllers.TransacoesController (MGContecnica.API).
+2025-09-02 12:18:30.004 -03:00 [INF] Route matched with {action = "Get", controller = "Transacoes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.TransacaoDto]]] Get(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime], System.Nullable`1[System.Int32], System.Nullable`1[MGContecnica.Domain.Enums.TipoTransacao]) on controller MGContecnica.API.Controllers.TransacoesController (MGContecnica.API).
+2025-09-02 12:18:30.180 -03:00 [INF] Buscando transações com filtros - DataInicio: null, DataFim: null, CategoriaId: null, Tipo: null
+2025-09-02 12:18:30.180 -03:00 [INF] Buscando transações com filtros - DataInicio: null, DataFim: null, CategoriaId: null, Tipo: null
+2025-09-02 12:18:32.010 -03:00 [INF] Executed DbCommand (20ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Categorias" AS "c"
+WHERE "c"."Ativo"
+2025-09-02 12:18:32.010 -03:00 [INF] Executed DbCommand (21ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."CategoriaId", "t"."Data", "t"."DataCriacao", "t"."Descricao", "t"."Observacoes", "t"."Valor", "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Transacoes" AS "t"
+INNER JOIN "Categorias" AS "c" ON "t"."CategoriaId" = "c"."Id"
+ORDER BY "t"."Data" DESC
+2025-09-02 12:18:32.010 -03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."CategoriaId", "t"."Data", "t"."DataCriacao", "t"."Descricao", "t"."Observacoes", "t"."Valor", "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Transacoes" AS "t"
+INNER JOIN "Categorias" AS "c" ON "t"."CategoriaId" = "c"."Id"
+ORDER BY "t"."Data" DESC
+2025-09-02 12:18:32.010 -03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Categorias" AS "c"
+WHERE "c"."Ativo"
+2025-09-02 12:18:32.718 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Categoria, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.CategoriaDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:18:32.727 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Categoria, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.CategoriaDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:18:32.732 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Transacao, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.TransacaoDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:18:32.735 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Transacao, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.TransacaoDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:18:33.154 -03:00 [INF] Executed action MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API) in 3173.2094ms
+2025-09-02 12:18:33.154 -03:00 [INF] Executed action MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API) in 3166.1595ms
+2025-09-02 12:18:33.156 -03:00 [INF] Executed action MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API) in 3150.8948ms
+2025-09-02 12:18:33.161 -03:00 [INF] Executed action MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API) in 3142.5954ms
+2025-09-02 12:18:33.163 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:18:33.163 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:18:33.163 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:18:33.167 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:18:33.187 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/categorias - 200 null application/json; charset=utf-8 3945.71ms
+2025-09-02 12:18:33.190 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/transacoes - 200 null application/json; charset=utf-8 3946.9641ms
+2025-09-02 12:18:33.190 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/transacoes - 200 null application/json; charset=utf-8 3947.4981ms
+2025-09-02 12:18:33.188 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/categorias - 200 null application/json; charset=utf-8 3940.2859ms
+2025-09-02 12:18:37.392 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/categorias - null 0
+2025-09-02 12:18:37.395 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/transacoes - null 0
+2025-09-02 12:18:37.402 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:18:37.402 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:18:37.402 -03:00 [INF] Route matched with {action = "Get", controller = "Transacoes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.TransacaoDto]]] Get(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime], System.Nullable`1[System.Int32], System.Nullable`1[MGContecnica.Domain.Enums.TipoTransacao]) on controller MGContecnica.API.Controllers.TransacoesController (MGContecnica.API).
+2025-09-02 12:18:37.403 -03:00 [INF] Route matched with {action = "Get", controller = "Categorias"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.CategoriaDto]]] Get() on controller MGContecnica.API.Controllers.CategoriasController (MGContecnica.API).
+2025-09-02 12:18:37.539 -03:00 [INF] Buscando transações com filtros - DataInicio: null, DataFim: null, CategoriaId: null, Tipo: null
+2025-09-02 12:18:37.544 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Categorias" AS "c"
+WHERE "c"."Ativo"
+2025-09-02 12:18:37.544 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."CategoriaId", "t"."Data", "t"."DataCriacao", "t"."Descricao", "t"."Observacoes", "t"."Valor", "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Transacoes" AS "t"
+INNER JOIN "Categorias" AS "c" ON "t"."CategoriaId" = "c"."Id"
+ORDER BY "t"."Data" DESC
+2025-09-02 12:18:37.552 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Categoria, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.CategoriaDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:18:37.554 -03:00 [INF] Executed action MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API) in 150.9697ms
+2025-09-02 12:18:37.559 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:18:37.559 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/categorias - 200 null application/json; charset=utf-8 167.7241ms
+2025-09-02 12:18:37.554 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Transacao, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.TransacaoDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:18:37.563 -03:00 [INF] Executed action MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API) in 160.4331ms
+2025-09-02 12:18:37.564 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:18:37.566 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/transacoes - 200 null application/json; charset=utf-8 171.1348ms
+2025-09-02 12:18:44.517 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/transacoes - null 0
+2025-09-02 12:18:44.517 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/categorias - null 0
+2025-09-02 12:18:44.518 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:18:44.518 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:18:44.519 -03:00 [INF] Route matched with {action = "Get", controller = "Transacoes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.TransacaoDto]]] Get(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime], System.Nullable`1[System.Int32], System.Nullable`1[MGContecnica.Domain.Enums.TipoTransacao]) on controller MGContecnica.API.Controllers.TransacoesController (MGContecnica.API).
+2025-09-02 12:18:44.519 -03:00 [INF] Route matched with {action = "Get", controller = "Categorias"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.CategoriaDto]]] Get() on controller MGContecnica.API.Controllers.CategoriasController (MGContecnica.API).
+2025-09-02 12:18:44.521 -03:00 [INF] Buscando transações com filtros - DataInicio: null, DataFim: null, CategoriaId: null, Tipo: null
+2025-09-02 12:18:44.525 -03:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Categorias" AS "c"
+WHERE "c"."Ativo"
+2025-09-02 12:18:44.525 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."CategoriaId", "t"."Data", "t"."DataCriacao", "t"."Descricao", "t"."Observacoes", "t"."Valor", "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Transacoes" AS "t"
+INNER JOIN "Categorias" AS "c" ON "t"."CategoriaId" = "c"."Id"
+ORDER BY "t"."Data" DESC
+2025-09-02 12:18:44.533 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Categoria, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.CategoriaDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:18:44.536 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Transacao, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.TransacaoDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:18:44.538 -03:00 [INF] Executed action MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API) in 18.4189ms
+2025-09-02 12:18:44.538 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:18:44.539 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/categorias - 200 null application/json; charset=utf-8 22.2332ms
+2025-09-02 12:18:44.538 -03:00 [INF] Executed action MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API) in 18.9708ms
+2025-09-02 12:18:44.547 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:18:44.548 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/transacoes - 200 null application/json; charset=utf-8 30.5488ms
+2025-09-02 12:18:52.828 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/swagger/index.html - null null
+2025-09-02 12:18:52.952 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/swagger/index.html - 200 null text/html;charset=utf-8 124.3231ms
+2025-09-02 12:18:54.434 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/swagger/v1/swagger.json - null null
+2025-09-02 12:18:54.951 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 516.9306ms
+2025-09-02 12:20:08.027 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/categorias - null 0
+2025-09-02 12:20:08.033 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:20:08.037 -03:00 [INF] Route matched with {action = "Get", controller = "Categorias"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.CategoriaDto]]] Get() on controller MGContecnica.API.Controllers.CategoriasController (MGContecnica.API).
+2025-09-02 12:20:08.043 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/transacoes - null 0
+2025-09-02 12:20:08.043 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:20:08.043 -03:00 [INF] Route matched with {action = "Get", controller = "Transacoes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.TransacaoDto]]] Get(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime], System.Nullable`1[System.Int32], System.Nullable`1[MGContecnica.Domain.Enums.TipoTransacao]) on controller MGContecnica.API.Controllers.TransacoesController (MGContecnica.API).
+2025-09-02 12:20:08.046 -03:00 [INF] Buscando transações com filtros - DataInicio: null, DataFim: null, CategoriaId: null, Tipo: null
+2025-09-02 12:20:08.048 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."CategoriaId", "t"."Data", "t"."DataCriacao", "t"."Descricao", "t"."Observacoes", "t"."Valor", "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Transacoes" AS "t"
+INNER JOIN "Categorias" AS "c" ON "t"."CategoriaId" = "c"."Id"
+ORDER BY "t"."Data" DESC
+2025-09-02 12:20:08.048 -03:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Categorias" AS "c"
+WHERE "c"."Ativo"
+2025-09-02 12:20:08.053 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Categoria, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.CategoriaDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:20:08.053 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Transacao, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.TransacaoDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:20:08.054 -03:00 [INF] Executed action MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API) in 8.8808ms
+2025-09-02 12:20:08.054 -03:00 [INF] Executed action MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API) in 16.3249ms
+2025-09-02 12:20:08.054 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:20:08.054 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:20:08.055 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/transacoes - 200 null application/json; charset=utf-8 12.395ms
+2025-09-02 12:20:08.055 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/categorias - 200 null application/json; charset=utf-8 28.3274ms
+2025-09-02 12:29:12.944 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/categorias - null 0
+2025-09-02 12:29:12.944 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/transacoes - null 0
+2025-09-02 12:29:12.946 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/categorias - null 0
+2025-09-02 12:29:12.956 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:29:12.956 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:29:12.959 -03:00 [INF] Request starting HTTP/1.1 GET http://localhost:5261/api/transacoes - null 0
+2025-09-02 12:29:12.959 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:29:12.960 -03:00 [INF] Executing endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:29:12.960 -03:00 [INF] Route matched with {action = "Get", controller = "Categorias"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.CategoriaDto]]] Get() on controller MGContecnica.API.Controllers.CategoriasController (MGContecnica.API).
+2025-09-02 12:29:12.960 -03:00 [INF] Route matched with {action = "Get", controller = "Transacoes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.TransacaoDto]]] Get(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime], System.Nullable`1[System.Int32], System.Nullable`1[MGContecnica.Domain.Enums.TipoTransacao]) on controller MGContecnica.API.Controllers.TransacoesController (MGContecnica.API).
+2025-09-02 12:29:12.960 -03:00 [INF] Route matched with {action = "Get", controller = "Transacoes"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.TransacaoDto]]] Get(System.Nullable`1[System.DateTime], System.Nullable`1[System.DateTime], System.Nullable`1[System.Int32], System.Nullable`1[MGContecnica.Domain.Enums.TipoTransacao]) on controller MGContecnica.API.Controllers.TransacoesController (MGContecnica.API).
+2025-09-02 12:29:12.960 -03:00 [INF] Route matched with {action = "Get", controller = "Categorias"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.ActionResult`1[System.Collections.Generic.IEnumerable`1[MGContecnica.Application.DTOs.CategoriaDto]]] Get() on controller MGContecnica.API.Controllers.CategoriasController (MGContecnica.API).
+2025-09-02 12:29:12.989 -03:00 [INF] Buscando transações com filtros - DataInicio: null, DataFim: null, CategoriaId: null, Tipo: null
+2025-09-02 12:29:12.990 -03:00 [INF] Buscando transações com filtros - DataInicio: null, DataFim: null, CategoriaId: null, Tipo: null
+2025-09-02 12:29:13.038 -03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Categorias" AS "c"
+WHERE "c"."Ativo"
+2025-09-02 12:29:13.039 -03:00 [INF] Executed DbCommand (14ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."CategoriaId", "t"."Data", "t"."DataCriacao", "t"."Descricao", "t"."Observacoes", "t"."Valor", "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Transacoes" AS "t"
+INNER JOIN "Categorias" AS "c" ON "t"."CategoriaId" = "c"."Id"
+ORDER BY "t"."Data" DESC
+2025-09-02 12:29:13.039 -03:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "t"."Id", "t"."CategoriaId", "t"."Data", "t"."DataCriacao", "t"."Descricao", "t"."Observacoes", "t"."Valor", "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Transacoes" AS "t"
+INNER JOIN "Categorias" AS "c" ON "t"."CategoriaId" = "c"."Id"
+ORDER BY "t"."Data" DESC
+2025-09-02 12:29:13.039 -03:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "c"."Id", "c"."Ativo", "c"."DataCriacao", "c"."Nome", "c"."Tipo"
+FROM "Categorias" AS "c"
+WHERE "c"."Ativo"
+2025-09-02 12:29:13.050 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Transacao, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.TransacaoDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:29:13.050 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Transacao, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.TransacaoDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:29:13.051 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Categoria, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.CategoriaDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:29:13.050 -03:00 [INF] Executing OkObjectResult, writing value of type 'System.Linq.Enumerable+SelectListIterator`2[[MGContecnica.Domain.Entities.Categoria, MGContecnica.Domain, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[MGContecnica.Application.DTOs.CategoriaDto, MGContecnica.Application, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-09-02 12:29:13.057 -03:00 [INF] Executed action MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API) in 93.3294ms
+2025-09-02 12:29:13.061 -03:00 [INF] Executed action MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API) in 95.8048ms
+2025-09-02 12:29:13.061 -03:00 [INF] Executed action MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API) in 95.6955ms
+2025-09-02 12:29:13.061 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:29:13.061 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:29:13.062 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.TransacoesController.Get (MGContecnica.API)'
+2025-09-02 12:29:13.062 -03:00 [INF] Executed action MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API) in 98.626ms
+2025-09-02 12:29:13.063 -03:00 [INF] Executed endpoint 'MGContecnica.API.Controllers.CategoriasController.Get (MGContecnica.API)'
+2025-09-02 12:29:13.065 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/categorias - 200 null application/json; charset=utf-8 119.3049ms
+2025-09-02 12:29:13.065 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/transacoes - 200 null application/json; charset=utf-8 119.476ms
+2025-09-02 12:29:13.065 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/transacoes - 200 null application/json; charset=utf-8 112.9594ms
+2025-09-02 12:29:13.069 -03:00 [INF] Request finished HTTP/1.1 GET http://localhost:5261/api/categorias - 200 null application/json; charset=utf-8 125.6992ms

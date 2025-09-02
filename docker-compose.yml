@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  mgcontecnica-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mgcontecnica-finance-api
+    ports:
+      - "8080:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:8080
+      - ConnectionStrings__DefaultConnection=Data Source=/app/data/financesystem.db
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    networks:
+      - mgcontecnica-network
+
+  # Opcional: Adicionar um container para o banco PostgreSQL
+  # Se quiser migrar do SQLite para PostgreSQL no futuro
+  # postgres:
+  #   image: postgres:15-alpine
+  #   container_name: mgcontecnica-postgres
+  #   environment:
+  #     - POSTGRES_DB=financesystem
+  #     - POSTGRES_USER=mgcontecnica
+  #     - POSTGRES_PASSWORD=MgContecnica2024!
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+  #   networks:
+  #     - mgcontecnica-network
+
+networks:
+  mgcontecnica-network:
+    driver: bridge
+
+# volumes:
+#   postgres_data:
